@@ -1,5 +1,6 @@
 const fs = require('fs');
 const inquirer = require('inquirer');
+const generatePage = require('./src/page-template.js');
 
 const managerQuestions = () => {
     return inquirer.prompt([{
@@ -71,6 +72,24 @@ const promptTeam = teamData => {
         },
         {
             type: 'input',
+            name: 'empName',
+            message: "Enter the employee's name: ",
+            default: 'Unknown',
+        },
+        {
+            type: 'input',
+            name: 'empId',
+            message: "Enter the employee's ID: ",
+            default: 0
+        },
+        {
+            type: 'input',
+            name: 'empEmail',
+            message: "Enter the employee's email: ",
+            default: 'noemail@mail.com' 
+        },
+        {
+            type: 'input',
             name: 'schoolName',
             message: "Enter Intern's school name: ",
             when: ({empType}) => empType === 'Intern'
@@ -98,5 +117,26 @@ const promptTeam = teamData => {
 });
 };
 
+// function to write README file
+const writeToFile = (fileName, data) => {
+    return new Promise((resolve, reject) =>{
+        fs.writeFile(fileName, generatePage(data), err =>{
+            if(err){
+                reject(err);
+                return;
+            }
+
+            resolve({
+                ok:true,
+                message: 'File created!'
+            });
+        });
+    });
+};
+
 managerQuestions()
-.then(promptTeam);
+.then(promptTeam)
+.then(teamData =>{
+    return writeToFile('./index.html', teamData);
+}
+);
