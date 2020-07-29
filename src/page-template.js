@@ -27,7 +27,7 @@ const generateEmployees = teamArr =>{
       <div class="flex-row justify-space-between">
       ${teamArr
     .filter((emp) => emp.getRole() === "Engineer")
-    .map(({name, ...stats}) => {
+    .map(({name, id, email, gitHub}) => {
       
         return `<div class="card-deck">
         <div class="card" style="width: 18rem;">
@@ -37,9 +37,9 @@ const generateEmployees = teamArr =>{
        <h4 class="text-white"><i class="fas fa-glasses" aria-hidden="true"></i>Engineer</h4>
      </div>
      <ul class="list-group list-group-flush">
-       <li class="list-group-item">Employee Id: ${stats.id}</li>
-       <li class="list-group-item">Email: <a href="mailto:${stats.email}"> ${stats.email}</a></li>
-       <li class="list-group-item">Github Account: <a href="https://github.com/${stats.gitHub}">${stats.gitHub}</a></li>
+       <li class="list-group-item">Employee Id: ${id}</li>
+       <li class="list-group-item">Email: <a href="mailto:${email}"> ${email}</a></li>
+       <li class="list-group-item">Github Account: <a href="https://github.com/${gitHub}">${gitHub}</a></li>
      </ul>
    </div>`;
       
@@ -49,7 +49,7 @@ const generateEmployees = teamArr =>{
 
     ${teamArr
     .filter(emp => emp.getRole() === "Intern")
-    .map(({name, id, email, schoolName}) =>{
+    .map(({name, id, email, school}) =>{
         return `
         <div class="card" style="width: 18rem;">
         <div class="card-header text-white bg-primary">
@@ -60,7 +60,7 @@ const generateEmployees = teamArr =>{
         <ul class="list-group list-group-flush">
           <li class="list-group-item">Employee Id: ${id}</li>
           <li class="list-group-item">Email:<a href="mailto:${email}"> ${email}</a></li>
-          <li class="list-group-item">School Name: ${schoolName}</li>
+          <li class="list-group-item">School Name: ${school}</li>
         </ul>
       </div>
         `;
