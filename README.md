@@ -3,7 +3,7 @@
 ## Description
 The Team-Profile-Generator is a node app used to generate an HTML file that displays the essential information of its members. Upon initiating the node application, the user is prompted to enter information regarding the team manager and then enter information for any Engineer or Intern members on the team. When the user signals that there are no more team members to enter information for, an html file displaying cards for each of the team members is created.
 
-Please see video link for a demo-walkthrough: https://drive.google.com/file/d/1_1PHOEhUbU_ZMw3XhsW4hqRppe46l1hW/view
+Please see video link for a demo-walkthrough: https://drive.google.com/file/d/1TwQoQj3meohcXfjFH-KYEiItGQXhHV5X/view
 
 ## Installation
 Once the repository is cloned, you will need to install the inquirer, and jest packages. You can do this by running the following command: 'npm install {package_name}'
