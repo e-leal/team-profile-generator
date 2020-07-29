@@ -1,6 +1,4 @@
 const generateManager = (manager) =>{
-    console.log(manager);
-    console.log("manager name is: ", manager.name);
     return `
     <section class="my-3" id="manager">
         <div class="flex-row justify-space-between">
@@ -24,37 +22,34 @@ const generateManager = (manager) =>{
 };
 
 const generateEmployees = teamArr =>{
-    console.log("team arr is: ",teamArr);
-    console.log("testing this role: ", teamArr[0].getRole());
     return `
     <section class="my-3" id="members">
       <div class="flex-row justify-space-between">
       ${teamArr
-    .filter(({this:getRole}) => this)
-    .map(({name, id, email, gitHub}) => {
-        console.log("THIS name is : ", name);
-        console.log("item name is : ", name)
-       return `<div class="card-deck">
-       <div class="card" style="width: 18rem;">
-         <div class="card-header text-white">
-           <h3 class="text-white">
-      ${name}</h3>
-      <h4 class="text-white"><i class="fas fa-glasses" aria-hidden="true"></i>Engineer</h4>
-    </div>
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item">Employee Id: ${id}</li>
-      <li class="list-group-item">Email: <a href="mailto:${email}"> ${email}</a></li>
-      <li class="list-group-item">Github Account: <a href="https://github.com/${gitHub}">${gitHub}</a></li>
-    </ul>
-  </div>`;
+    .filter((emp) => emp.getRole() === "Engineer")
+    .map(({name, ...stats}) => {
+      
+        return `<div class="card-deck">
+        <div class="card" style="width: 18rem;">
+          <div class="card-header text-white">
+            <h3 class="text-white">
+       ${name}</h3>
+       <h4 class="text-white"><i class="fas fa-glasses" aria-hidden="true"></i>Engineer</h4>
+     </div>
+     <ul class="list-group list-group-flush">
+       <li class="list-group-item">Employee Id: ${stats.id}</li>
+       <li class="list-group-item">Email: <a href="mailto:${stats.email}"> ${stats.email}</a></li>
+       <li class="list-group-item">Github Account: <a href="https://github.com/${stats.gitHub}">${stats.gitHub}</a></li>
+     </ul>
+   </div>`;
+      
+        
     })
     .join('')}
 
     ${teamArr
-    .filter(({this:getRole}) => this )
+    .filter(emp => emp.getRole() === "Intern")
     .map(({name, id, email, schoolName}) =>{
-        console.log("TiS is : ", name);
-        console.log("item name is : ", name)
         return `
         <div class="card" style="width: 18rem;">
         <div class="card-header text-white bg-primary">
@@ -69,6 +64,7 @@ const generateEmployees = teamArr =>{
         </ul>
       </div>
         `;
+        
     })
 .join('')}
 </div>
@@ -78,11 +74,6 @@ const generateEmployees = teamArr =>{
 
 module.exports = templateData => {
     const {manager, employees} = templateData;
-    console.log("manager value is: ",manager);
-    console.log("members value is: ",employees);
-    console.log("testing to read object val", employees[0].getRole());
-    console.log(generateManager(manager));
-    console.log(generateEmployees(employees));
     return `
     <!DOCTYPE html>
     <html lang="en">
